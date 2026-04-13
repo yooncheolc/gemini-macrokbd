@@ -45,7 +45,8 @@ body {
 }
 
 .p2-logo {
-    height: 24px;
+    height: 48px;
+    max-width: 220px;
     object-fit: contain;
 }
 
@@ -397,6 +398,24 @@ body {
 
 .primary-button.hidden {
     display: none;
+}
+
+.secondary-button {
+    display: inline-block;
+    background-color: var(--surface-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.secondary-button:hover {
+    background-color: #F8F9FA;
+    border-color: var(--primary-color);
 }
 
 .warning-text {
