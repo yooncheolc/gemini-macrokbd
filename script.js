@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const descEl = document.getElementById('keyDesc');
     const geminiLink = document.getElementById('geminiLink');
     const keyWarning = document.getElementById('keyWarning');
+    const keySound = new Audio('key.mp3');
 
     const updateInfoPanel = (dataKey) => {
         const data = keyData[dataKey];
@@ -84,6 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         key.addEventListener('click', () => {
+            keySound.currentTime = 0;
+            keySound.play().catch(e => console.warn('Audio play failed:', e));
+
             updateInfoPanel(dataKey);
             
             key.classList.add('active');
