@@ -14,6 +14,10 @@
     --font-family: 'Noto Sans KR', 'Roboto', sans-serif;
 }
 
+.brand-font {
+    font-family: 'Product Sans', 'Noto Sans KR', sans-serif;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -523,6 +527,7 @@ body {
     font-weight: 500;
     line-height: 1.6;
     color: var(--text-primary);
+    flex-grow: 1; /* 빈 공간을 차지하여 이미지를 하단으로 정렬시킴 */
 }
 
 .slide-media {
@@ -536,6 +541,7 @@ body {
     align-items: center;
     justify-content: center;
     color: var(--text-secondary);
+    flex-shrink: 0; /* 이미지 영역 축소 방지 */
 }
 
 .slide-media img {
@@ -816,20 +822,20 @@ input:checked + .slider:before {
     }
     .layout-visual {
         max-width: 100%;
-        overflow: hidden;
-        padding: 16px 0; /* float 애니메이션 영역 확보 */
+        padding: 16px 0;
     }
     .guide-module {
-        padding: 16px;
+        padding: 20px 16px;
     }
     .carousel-container {
-        padding: 16px 12px 40px 12px;
+        padding: 16px 12px 48px 12px;
     }
     .carousel-btn {
         width: 28px;
         height: 28px;
         font-size: 14px;
         opacity: 0.8;
+        background: rgba(255, 255, 255, 0.9);
     }
     .carousel-btn.prev {
         left: 4px;
@@ -837,20 +843,23 @@ input:checked + .slider:before {
     .carousel-btn.next {
         right: 4px;
     }
+    .carousel-indicators {
+        bottom: 16px;
+    }
+    .info-content {
+        min-height: auto;
+    }
 }
 
 @media (max-width: 600px) {
     .keyboard {
-        transform: scale(0.85);
-        transform-origin: center;
-        margin: -16px 0;
+        zoom: 0.85;
     }
 }
 
 @media (max-width: 480px) {
     .keyboard {
-        transform: scale(0.7);
-        margin: -32px 0;
+        zoom: 0.7;
     }
     .info-content {
         padding: 20px 16px;
@@ -859,7 +868,6 @@ input:checked + .slider:before {
 
 @media (max-width: 380px) {
     .keyboard {
-        transform: scale(0.65);
-        margin: -36px 0;
+        zoom: 0.65;
     }
 }
