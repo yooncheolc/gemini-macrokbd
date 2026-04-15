@@ -26,6 +26,7 @@ body {
     font-family: var(--font-family);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 /* App Bar */
@@ -469,54 +470,140 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-.steps-container {
+.guides-container {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 40px;
 }
 
-.step-item {
+.guide-module {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.guide-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.carousel-container {
+    position: relative;
+    background: var(--surface-color);
+    border-radius: 8px;
+    padding: 20px 48px 32px 48px; /* 좌우는 화살표 영역, 하단은 인디케이터 영역 */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+.carousel-track-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.carousel-track {
     display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
 }
 
-.step-number {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #E8EAED;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    flex-shrink: 0;
-}
-
-.step-content h4 {
-    font-size: 16px;
+.slide-text {
+    font-size: 15px;
     font-weight: 500;
-    margin-bottom: 4px;
+    line-height: 1.6;
+    color: var(--text-primary);
 }
 
-.step-content p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-}
-
-.step-image-placeholder {
+.slide-media {
     width: 100%;
-    max-width: 400px;
-    height: 200px;
+    aspect-ratio: 16 / 10;
     background-color: var(--bg-color);
     border: 1px dashed var(--border-color);
     border-radius: 8px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-secondary);
-    font-size: 14px;
+}
+
+.slide-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: calc(50% - 16px);
+    transform: translateY(-50%);
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    user-select: none;
+    z-index: 2;
+}
+
+.carousel-btn:hover:not(:disabled) {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    box-shadow: none;
+}
+
+.carousel-btn.prev {
+    left: 8px;
+}
+
+.carousel-btn.next {
+    right: 8px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.indicator-dot.active {
+    background: var(--primary-color);
 }
 
 /* Footer */
@@ -709,7 +796,6 @@ input:checked + .slider:before {
     font-size: 14px;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .main-content {
         padding: 0 16px;
@@ -730,7 +816,26 @@ input:checked + .slider:before {
     }
     .layout-visual {
         max-width: 100%;
-        overflow-x: hidden;
+        overflow: hidden;
+        padding: 16px 0; /* float 애니메이션 영역 확보 */
+    }
+    .guide-module {
+        padding: 16px;
+    }
+    .carousel-container {
+        padding: 16px 12px 40px 12px;
+    }
+    .carousel-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+    .carousel-btn.prev {
+        left: 4px;
+    }
+    .carousel-btn.next {
+        right: 4px;
     }
 }
 
